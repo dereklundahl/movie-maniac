@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import './assets/App.css';
+import './assets/css/App.css';
+import NowPlaying from './components/NowPlaying';
+import Popular from './components/Popular';
+import TopRated from './components/TopRated';
 
 class App extends Component {
   render() {
@@ -10,9 +13,9 @@ class App extends Component {
           <input className="search" type="text" placeholder="search"></input>
         </header>
         <div className="panels">
-          <div className="panel">Now Playing Component</div>
-          <div className="panel">Popular Component</div>
-          <div className="panel">Top Rated Component</div>
+          <NowPlaying className="panel" />
+          <Popular className="panel" />
+          <TopRated className="pannel" />
         </div>
       </div>
     );
