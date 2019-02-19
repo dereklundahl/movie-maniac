@@ -7,7 +7,6 @@ class NowPlayingMovie extends React.Component {
              <img 
                src={`https://image.tmdb.org/t/p/w300/${this.props.movieDetails.poster_path}`} 
                alt="move poster" />
-
           </div>
         )
     }

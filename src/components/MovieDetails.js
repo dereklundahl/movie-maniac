@@ -1,5 +1,4 @@
 import React from "react";
-import '../assets/css/Popular.css';
 
 class MovieDetails extends React.Component {
     render() {
