@@ -3,6 +3,7 @@ import './assets/css/App.css';
 import NowPlaying from './components/NowPlaying';
 import Popular from './components/Popular';
 import TopRated from './components/TopRated';
+import Header from './components/Header';
 import fetch from 'isomorphic-fetch';
 
 class App extends Component {
@@ -16,17 +17,6 @@ class App extends Component {
       loading: false
     }
   }
-
-  // 1. Take a copy of the existing state:
-  // const popular = {...this.state.popular};
-  // 2. Add new data to the copy of state
-  // Wes uses Date.now as his index like:
-  // popular[`fish${Date.now()}`] = fish;
-  // 3. Set the updated copy into the state
-  // this.setState({
-  //   popular: popular  sets the state to the copy
-  //}) and can just be written as popular since propery and value are the same
-
 
   componentDidMount() {
     //Show that the data is loading
@@ -69,10 +59,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Movie Maniac</h1>
-          <input className="search" type="text" placeholder="search"></input>
-        </header>
+        <Header />
         <div className="panels">
           <NowPlaying nowPlaying={this.state.nowPlaying} className="panel" />
           <Popular popular={this.state.popular} className="panel" />
