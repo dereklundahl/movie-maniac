@@ -11,6 +11,7 @@ const NavStyles = styled.ul`
   button {
     padding: 1rem 3rem;
     display: flex;
+    color: red;
     align-items: center;
     position: relative;
     text-transform: uppercase;

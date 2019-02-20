@@ -29,18 +29,18 @@ export default function configureStore(defaultState) {
             ),
         ),
     )
-    //return store;
-    store.dispatch((dispatch) => {
-        dispatch({type: "FETCH_DATA_START"})
-        axios.get(
-            "https://api.themoviedb.org/3/movie/popular?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=1")
-              .then((response) => {
-                  dispatch({type: "RECEIVE_DATA", payload: response.data})
-              })
-              .catch((err) => {
-                  dispatch({type: "FETCH_DATA_ERROR", payload: err})
-              })
-    })
+    return store;
+    // store.dispatch((dispatch) => {
+    //     dispatch({type: "FETCH_DATA_START"})
+    //     axios.get(
+    //         "https://api.themoviedb.org/3/movie/popular?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=1")
+    //           .then((response) => {
+    //               dispatch({type: "RECEIVE_DATA", payload: response.data})
+    //           })
+    //           .catch((err) => {
+    //               dispatch({type: "FETCH_DATA_ERROR", payload: err})
+    //           })
+    // })
     
 };
 
