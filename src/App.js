@@ -4,6 +4,8 @@ import NowPlaying from './components/NowPlaying';
 import Popular from './components/Popular';
 import TopRated from './components/TopRated';
 import Header from './components/Header';
+
+
 import fetch from 'isomorphic-fetch';
 
 class App extends Component {
