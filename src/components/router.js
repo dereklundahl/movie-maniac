@@ -4,10 +4,7 @@ import { Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import configureStore, { history } from '../configureStore';
 
-
 import App from "../App";
-import NotFound from './NotFound';
-import MovieDetails from './MovieDetails';
 
 const store = configureStore();
 
