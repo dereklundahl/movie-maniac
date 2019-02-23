@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
-import popular from './popular';
-import topRated from './topRated';
-import nowPlaying from './nowPlaying';
+import popularReducer from './popularReducer';
+import topRatedReducer from './topRatedReducer';
+import nowPlayingReducer from './nowPlayingReducer';
 
 export default (history) => combineReducers({
     router: connectRouter(history), 
-      popular,
-      topRated,
-      nowPlaying
+      popularReducer,
+      topRatedReducer,
+      nowPlayingReducer
 })
 
 

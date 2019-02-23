@@ -1,22 +1,19 @@
-// a reducer takes in two things
-//1. the action
-// 2. a copy of current state
 
 import {
-    FETCH_DATA_START,
-    RECEIVE_DATA,
-    FETCH_DATA_ERROR
-} from '../Actions/actionCreaters';
+    FETCH_DATA_PENDING,
+    FETCH_DATA_FULFILLED,
+    FETCH_DATA_REJECTED
+} from '../Actions/actionCreators';
 
 const initialState = {
-    data: [],
+    topRated: [],
     loading: false,
-    error: null
+    err: null
 };
 
 export default function topRated(state = initialState, action) {
     switch(action.type) {
-        case FETCH_DATA_START: {
+        case 'FETCH_DATA_PENDING': {
           return {
               ...state,
               fetching: true,
@@ -24,21 +21,22 @@ export default function topRated(state = initialState, action) {
           break;
         }
 
-        case FETCH_DATA_ERROR: {
-          return {
-              ...state,
-              fetching: false,
-              error: action.payload
-          }
-          break;
-        }
-
-        case RECEIVE_DATA: {
+        
+        case 'FETCH_DATA_FULFILLED': {
           return {
               ...state,
               fetching: false,
               fetched: true,
               data: action.payload
+          }
+          break;
+        }
+
+        case 'FETCH_DATA_REJECTED': {
+          return {
+              ...state,
+              fetching: false,
+              error: action.payload  
           }
           break;
         }
