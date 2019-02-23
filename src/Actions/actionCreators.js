@@ -45,6 +45,7 @@ export function fetchMovies() {
         axios.get(
             "https://api.themoviedb.org/3/movie/popular?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=2")
             .then((response) => {
+                console.log(JSON.stringify(response));
                 dispatch({type: "FETCH_DATA_FULFILLED", payload: response.data})
             })
             .catch((err) => {

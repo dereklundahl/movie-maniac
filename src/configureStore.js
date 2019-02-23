@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 // will be doing a lot of async so promis will shorten code
 import promise from 'redux-promise-middleware';
+import reducer from './Reducers';
 
 import createRootReducer from './Reducers/index';
 
@@ -29,7 +30,7 @@ const defaultState = {
 
 };
 
-export default function configureStore(defaultState) {
+export default function configureStore() {
     const store = createStore(
         createRootReducer(history),
         //defaultState,
