@@ -14,16 +14,13 @@ connect((store) => {
 });
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   componentWillMount() {
-    fetchMovies();
+    this.props.dispatch(fetchMovies());
   }
 
   render() {
-    console.log(this.props);
+    const { fetchingPopular, fetchedPopular, errorPopular, popular } = this.props
     return (
       <div className="App">
         <Header />
@@ -33,7 +30,20 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  const { popular,
+    fetchingPopular,
+    fetchedPopular,
+    errorPopular } = state
+  return {
+    popular,
+    fetchingPopular,
+    fetchedPopular,
+    errorPopular,
+  }
+}
+
+export default connect(mapStateToProps)(App);
 
 
 

@@ -7,40 +7,38 @@ import {
 const initialState = {
   fetching: false,
   fetched: false,
-  popular: [],
+  popular: {},
   error: null
 };
 
 
 export default function popularReducer(state=initialState, action) {
     switch(action.type) {
-        case 'FETCH_DATA_PENDING': {
+        case FETCH_DATA_PENDING: {
+          console.log("STEP 3, change fetching to TRUE !!!")
           return {
             ...state, 
             fetching: true
           }
-          break;
         }
 
-        case 'FETCH_DATA_REJECTED': {
+        case FETCH_DATA_REJECTED: {
           console.log("rejected!!!");
           return {
               ...state,
               fetching: false,
               error: action.payload  
           }
-          break;
         }
 
-        case 'FETCH_DATA_FULFILLED': {
-          console.log("FETCH DATA FULFILLED from the reducer")
+        case FETCH_DATA_FULFILLED: {
+          console.log("FETCH DATA FULFILLED from the reducer STEP 5")
           return {
             ...state, 
             fetching: false,
             fetched: true,
-            popular: action.payload
+            popular: {...action.popular}
           }
-          break;
         }
 
         default:

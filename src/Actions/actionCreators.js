@@ -1,5 +1,4 @@
 import axios from 'axios';
- 
 
 // Synchronous Action Creaters
 export const SELECT_MOVIE = 'SELECT_MOVIE';
@@ -14,18 +13,20 @@ export function selectMovie(movie) {
 
 export const FETCH_DATA_PENDING = 'FETCH_DATA_PENDING'
 export function fetchDataPending(movies) {
-  return {
+    console.log("fetch data pending from action creators synch STEP 2"); 
+    return {
     type: FETCH_DATA_PENDING,
     movies
   }
 }
 
 export const FETCH_DATA_FULFILLED = 'FETCH_DATA-FULFILLED'
-export function fetchDataFulfilled(movies, json) {
+export function fetchDataFulfilled(movieDatabase, json) {
+  console.log("fetch data fulfilled firing from actionCreators STEP 4");
   return {
     type: FETCH_DATA_FULFILLED,
-    movies: json,
-    receivedAt: Date.now()
+    popular: json,
+    movieDatabase
   }
 }
 
@@ -37,19 +38,28 @@ export function fetchDataRejected(error) {
     }
 }
 
-// use thunk and add axios and promise to minimize code in calls
-export function fetchMovies() {
-    console.log("FETCH MOVIES FIRING FROM actionCreators");
-    return function(dispatch) {
-        dispatch({type: "FETCH_DATA_PENDING"})
-        axios.get(
-            "https://api.themoviedb.org/3/movie/popular?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=2")
-            .then((response) => {
-                console.log(JSON.stringify(response));
-                dispatch({type: "FETCH_DATA_FULFILLED", payload: response.data})
-            })
-            .catch((err) => {
-                dispatch({type: "FETCH_DATA_REJECTED", payoad: err})
-            })
-        }
-    }
+// use thunk for async
+export const fetchMovies = movieDatabase => dispatch => {
+    console.log("Fetch movies firing from action creators STEP 1");
+    dispatch(fetchDataPending(movieDatabase))
+    return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=2`)
+      .then(response => response.json())
+      .then(json => dispatch(fetchDataFulfilled(movieDatabase, json)))
+  }
+
+// export function fetchMovies() {
+//     return function(dispatch) {
+//         console.log("about to dispatch");
+//         dispatch({type: "FETCH_DATA_PENDING"})
+//         axios.get(
+//             "https://api.themoviedb.org/3/movie/popular?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=2")
+//             .then((response) => {
+//                 console.log(`this is the response ${JSON.stringify(response.data)}`);
+//                 dispatch({type: "FETCH_DATA_FULFILLED", payload: response.data})
+//             })
+//             .catch((err) => {
+//                 dispatch({type: "FETCH_DATA_REJECTED", payoad: err})
+//             })
+//     }
+// }
+
