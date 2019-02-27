@@ -5,10 +5,10 @@ import {
 } from '../Actions/actionCreators';
 
 const initialState = {
-  fetching: false,
-  fetched: false,
-  popular: {},
-  error: null
+  fetchingPopular: false,
+  fetchedPopular: false,
+  popular: [],
+  errorPopular: null
 };
 
 
@@ -18,7 +18,7 @@ export default function popularReducer(state=initialState, action) {
           console.log("STEP 3, change fetching to TRUE !!!")
           return {
             ...state, 
-            fetching: true
+            fetchingPopular: true
           }
         }
 
@@ -26,7 +26,7 @@ export default function popularReducer(state=initialState, action) {
           console.log("rejected!!!");
           return {
               ...state,
-              fetching: false,
+              fetchingPopular: false,
               error: action.payload  
           }
         }
@@ -35,9 +35,9 @@ export default function popularReducer(state=initialState, action) {
           console.log("FETCH DATA FULFILLED from the reducer STEP 5")
           return {
             ...state, 
-            fetching: false,
-            fetched: true,
-            popular: {...action.popular}
+            fetchingPopular: false,
+            fetchedPopular: true,
+            popular: action.popular.results
           }
         }
 

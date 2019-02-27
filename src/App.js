@@ -6,12 +6,7 @@ import Main from './components/Main';
 
 import { fetchMovies } from './Actions/actionCreators';
 
-
-connect((store) => {
-  return {
-    popular: store.popular
-  };
-});
+import AppStyles from './components/styles/AppStyles';
 
 class App extends Component {
 
@@ -21,30 +16,31 @@ class App extends Component {
 
   render() {
     const { fetchingPopular, fetchedPopular, errorPopular, popular } = this.props
+
     return (
-      <div className="App">
+      <AppStyles>
         <Header />
-        <Main />
-      </div>
+        { this.props.fetchingPopular ? 
+          <h1>Loading...</h1> :
+          fetchedPopular && popular !== 'undefined' ?
+        <Main /> : 
+        <h1>OOOOOOPS!</h1>}
+      </AppStyles>
     );
   }
 }
 
-const mapStateToProps = state => {
-  const { popular,
-    fetchingPopular,
-    fetchedPopular,
-    errorPopular } = state
+
+const mapStateToProps = (state) => {
   return {
-    popular,
-    fetchingPopular,
-    fetchedPopular,
-    errorPopular,
+      fetchingPopular: state.popularReducer.fetchingPopular,
+      fetchedPopular: state.popularReducer.fetchedPopular,
+      popular: {...state.popularReducer.popular}
   }
 }
 
-export default connect(mapStateToProps)(App);
 
+export default connect(mapStateToProps)(App);
 
 
   //   fetch('https://api.themoviedb.org/3/movie/popular?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=1', {

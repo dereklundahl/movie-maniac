@@ -5,14 +5,18 @@ import PopularGrid from './PopularGrid';
 import TopRatedGrid from './TopRatedGrid';
 import NowPlayingGrid from './NowPlayingGrid';
 
-const Main = () => (
-    <Switch>
-       <Route exact path="/" component={SlideShow}/>
-       <Route path="/popular" component={PopularGrid}/>
-       <Route path="/top-rated" component={TopRatedGrid}/>
-       <Route path="/now-playing" component={NowPlayingGrid}/>
-    </Switch>
-  
-);
+class Main extends React.Component {
+    render() {
+        return (
+            <div>
+              <Route exact path="/" component={SlideShow}/>
+              <Route path="/popular" component={PopularGrid}/>
+              <Route path="/top-rated" component={TopRatedGrid}/>
+              <Route path="/now-playing" component={NowPlayingGrid}/>
+            </div>
+        )
+    }
+} 
+
 
 export default Main;
