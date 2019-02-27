@@ -6,7 +6,8 @@
 }
 
 .slider {
-    height: 400px;
+    overflow: hidden;
+    height: 600px;
 }
 
 .slider figure div {
@@ -23,7 +24,7 @@
 .slider figure {
     position: relative;
     width: 500%;
-    height: 50%;
+    height: 100%;
     margin: 0;
     left: 0;
     animation: 10s slidy infinite;

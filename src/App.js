@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Header from './components/Header';
-import Main from './components/Main';
+import SlideShow from './components/SlideShow';
+import PopularGrid from './components/PopularGrid';
+import TopRatedGrid from './components/TopRatedGrid';
+import NowPlayingGrid from './components/NowPlayingGrid';
+
 
 import { fetchMovies } from './Actions/actionCreators';
 
@@ -18,14 +23,21 @@ class App extends Component {
     const { fetchingPopular, fetchedPopular, errorPopular, popular } = this.props
 
     return (
-      <AppStyles>
-        <Header />
-        { this.props.fetchingPopular ? 
-          <h1>Loading...</h1> :
-          fetchedPopular && popular !== 'undefined' ?
-        <Main /> : 
-        <h1>OOOOOOPS!</h1>}
-      </AppStyles>
+      <Router>
+        <AppStyles>    
+            <Header />
+            {this.props.fetchingPopular ? 
+              <h1>Loading...</h1> :
+              fetchedPopular && popular !== 'undefined' ?
+              <Switch>
+                  <Route exact path="/" component={SlideShow}/>
+                  <Route path="/popular" component={PopularGrid}/>
+                  <Route path="/top-rated" component={TopRatedGrid}/>
+                  <Route path="/now-playing" component={NowPlayingGrid}/>
+              </Switch> : 
+            <h1>OOOOOOPS!</h1>}
+        </AppStyles>
+      </Router  >
     );
   }
 }
