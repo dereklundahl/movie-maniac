@@ -12,6 +12,7 @@ const defaultState = {
     nowPlayingReducer: [],
     popularReducer: [],
     topRatedReducer: [],
+    movieSearchReducer: {},
     router: {}
     // topRated: [],
     // fetchingTopRated: false,

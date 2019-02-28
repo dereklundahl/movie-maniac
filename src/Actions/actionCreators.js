@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { isPending } from 'q';
 
 // Synchronous Action Creaters
 export const SELECT_MOVIE = 'SELECT_MOVIE';
@@ -13,7 +14,6 @@ export function selectMovie(movie) {
 
 export const FETCH_DATA_PENDING = 'FETCH_DATA_PENDING'
 export function fetchDataPending(movies) {
-    console.log("fetch data pending from action creators synch STEP 2"); 
     return {
     type: FETCH_DATA_PENDING,
     movies
@@ -22,7 +22,6 @@ export function fetchDataPending(movies) {
 
 export const FETCH_DATA_FULFILLED = 'FETCH_DATA-FULFILLED'
 export function fetchDataFulfilled(movieDatabase, json) {
-  console.log("fetch data fulfilled firing from actionCreators STEP 4");
   return {
     type: FETCH_DATA_FULFILLED,
     popular: json,
@@ -40,26 +39,45 @@ export function fetchDataRejected(error) {
 
 // use thunk for async
 export const fetchMovies = movieDatabase => dispatch => {
-    console.log("Fetch movies firing from action creators STEP 1");
     dispatch(fetchDataPending(movieDatabase))
     return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=2`)
       .then(response => response.json())
       .then(json => dispatch(fetchDataFulfilled(movieDatabase, json)))
   }
+  
+  //consider using redux form
+  export const searchMovies = formattedValue => dispatch => {
+      console.log(`Step 2: https//api.themoviedb.org/3/search/movie?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&query=${formattedValue}`);
+      dispatch(fetchMovieSearchPending())
+      return fetch(`https://api.themoviedb.org/3/search/movie?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&query=${formattedValue}`)
+        .then(response => response.json())
+        .then(json => dispatch(fetchMovieSearchFulfilled(formattedValue, json)))
+  }
 
-// export function fetchMovies() {
-//     return function(dispatch) {
-//         console.log("about to dispatch");
-//         dispatch({type: "FETCH_DATA_PENDING"})
-//         axios.get(
-//             "https://api.themoviedb.org/3/movie/popular?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=2")
-//             .then((response) => {
-//                 console.log(`this is the response ${JSON.stringify(response.data)}`);
-//                 dispatch({type: "FETCH_DATA_FULFILLED", payload: response.data})
-//             })
-//             .catch((err) => {
-//                 dispatch({type: "FETCH_DATA_REJECTED", payoad: err})
-//             })
-//     }
-// }
+  export const FETCH_MOVIE_SEARCH_PENDING = "FETCH_MOVIE_SEARCH_PENDING";
+  export function fetchMovieSearchPending(movies) {
+    console.log(`Step 3, movie search fetch pending action creator`);
+    return {
+    type: FETCH_MOVIE_SEARCH_PENDING,
+    
+  }
+}
 
+  export const FETCH_MOVIE_SEARCH_REJECTED = "FETCH_MOVIE_SEARCH_REJECTED";
+  export function fetchMovieSearchRejected(error) {
+    return {
+        type: FETCH_MOVIE_SEARCH_REJECTED,
+        error
+    }
+}
+
+  export const FETCH_MOVIE_SEARCH_FULFILLED = "FETCH_MOVIE_SEARCH_FULFILLED";
+  export function fetchMovieSearchFulfilled(movieDatabase, json) {
+    console.log(`step 5, movie search fetch fulfilled`);
+    return {
+      type: FETCH_MOVIE_SEARCH_FULFILLED,
+      movieSearch: json,
+      
+    }
+  }
+  

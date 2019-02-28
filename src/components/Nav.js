@@ -8,9 +8,6 @@ const Nav = () => (
     <Link to="/popular">Popular</Link>
     <Link to="/now-playing">Now Playing</Link>
     <Link to="/top-rated">Top Rated</Link>
-    <form>
-        <input type="text" placeholder="Search Movie Titles"></input>
-    </form>
   </NavStyles>
 )
 

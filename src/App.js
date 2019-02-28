@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <Router>
         <AppStyles>    
-            <Header />
+            <Header handleSubmit={() => this.handleSubmit.bind(this)}/>
             {this.props.fetchingPopular ? 
               <h1>Loading...</h1> :
               fetchedPopular && popular !== 'undefined' ?

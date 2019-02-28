@@ -1,5 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
+
 import Nav from './Nav';
+import { searchMovies } from '../Actions/actionCreators';
+ 
+
 import styled from 'styled-components';
 
 const Logo = styled.h1`
@@ -31,17 +37,47 @@ const StyledHeader = styled.header`
       background: #282c34;
 
   }
+  .bar .search {
+    display: grid;
+  }
 `;
 
-const Header = () => (
-  <StyledHeader>
-    <div className="bar">
-      <Logo>
-        <a href="/">Movie Maniac</a>
-      </Logo>
-      <Nav />
-    </div>
-  </StyledHeader>
-)
+class Header extends React.Component {
+  movieSearch = React.createRef();
 
-export default Header;
+  findAndReplace = (string, target, replacement) => {
+    for(let i = 0; i < string.length; i++) {
+      string = string.replace(target, replacement);
+    }
+    return string;
+  }
+
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    let value = this.movieSearch.current.value;
+    let formattedValue = value.replace(/\s/g, '+');
+    console.log(`Step 1, button clicked with value of ${formattedValue}`);
+    this.props.dispatch(searchMovies(formattedValue));
+  }
+
+  render() {
+    return (
+      <StyledHeader>
+      <div className="bar">
+        <Logo>
+          <a href="/">Movie Maniac</a>
+        </Logo>
+        <Nav />
+        <form className="search" onSubmit={this.handleSubmit}>
+            <input type="text" name="name" placeholder="Search for Movies" ref={this.movieSearch}></input>
+            <button  className="button">Go</button>
+        </form>
+      </div>
+    </StyledHeader>
+  
+    )
+  }
+}
+
+export default connect()(Header);
