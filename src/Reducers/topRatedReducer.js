@@ -1,48 +1,46 @@
-
 import {
-    FETCH_DATA_PENDING,
-    FETCH_DATA_FULFILLED,
-    FETCH_DATA_REJECTED
+  FETCH_TOP_RATED_PENDING,
+  FETCH_TOP_RATED_FULFILLED,
+  FETCH_TOP_RATED_REJECTED
 } from '../Actions/actionCreators';
 
 const initialState = {
-    topRated: [],
-    loading: false,
-    err: null
+  fetchingTopRated: false,
+  fetchedTopRated: false,
+  topRated: [],
+  errorTopRated: null
 };
 
-export default function topRated(state = initialState, action) {
+
+export default function topRatedReducer(state=initialState, action) {
     switch(action.type) {
-        case 'FETCH_DATA_PENDING': {
+        case FETCH_TOP_RATED_PENDING: {
           return {
-              ...state,
-              fetching: true,
+            ...state, 
+            fetchingTopRated: true
           }
-          break;
         }
 
-        
-        case 'FETCH_DATA_FULFILLED': {
+        case FETCH_TOP_RATED_REJECTED: {
           return {
               ...state,
-              fetching: false,
-              fetched: true,
-              data: action.payload
+              fetchingTopRated: false,
+              errorTopRated: action.payload  
           }
-          break;
         }
 
-        case 'FETCH_DATA_REJECTED': {
+        case FETCH_TOP_RATED_FULFILLED: {
           return {
-              ...state,
-              fetching: false,
-              error: action.payload  
+            ...state, 
+            fetchingTopRated: false,
+            fetchedTopRated: true,
+            topRated: action.topRated.results
           }
-          break;
         }
-          
+
         default:
           return state;
-
     }
 }
+
+

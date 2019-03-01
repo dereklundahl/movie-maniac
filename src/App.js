@@ -7,35 +7,41 @@ import SlideShow from './components/SlideShow';
 import PopularGrid from './components/PopularGrid';
 import TopRatedGrid from './components/TopRatedGrid';
 import NowPlayingGrid from './components/NowPlayingGrid';
+import MovieSearchList from './components/MovieSearchList';
 
 
-import { fetchMovies } from './Actions/actionCreators';
+import { 
+  fetchSlideShowMovies, 
+  fetchPopularMovies,
+  fetchTopRatedMovies,
+  fetchNowPlayingMovies } from './Actions/actionCreators';
 
 import AppStyles from './components/styles/AppStyles';
 
 class App extends Component {
 
   componentWillMount() {
-    this.props.dispatch(fetchMovies());
+    this.props.dispatch(fetchSlideShowMovies());
+    this.props.dispatch(fetchPopularMovies());
+    this.props.dispatch(fetchTopRatedMovies());
+    this.props.dispatch(fetchNowPlayingMovies());
   }
 
   render() {
-    const { fetchingPopular, fetchedPopular, errorPopular, popular } = this.props
-
     return (
       <Router>
         <AppStyles>    
-            <Header handleSubmit={() => this.handleSubmit.bind(this)}/>
-            {this.props.fetchingPopular ? 
+            <Header />
+            {this.props.fetchingSlideShow ? 
               <h1>Loading...</h1> :
-              fetchedPopular && popular !== 'undefined' ?
               <Switch>
                   <Route exact path="/" component={SlideShow}/>
                   <Route path="/popular" component={PopularGrid}/>
                   <Route path="/top-rated" component={TopRatedGrid}/>
                   <Route path="/now-playing" component={NowPlayingGrid}/>
-              </Switch> : 
-            <h1>OOOOOOPS!</h1>}
+                  <Route path="/search" component={MovieSearchList}/>
+              </Switch> 
+            }
         </AppStyles>
       </Router  >
     );
@@ -45,9 +51,9 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      fetchingPopular: state.popularReducer.fetchingPopular,
-      fetchedPopular: state.popularReducer.fetchedPopular,
-      popular: {...state.popularReducer.popular}
+      fetchingSlideShow: state.slideShowReducer.fetchingSlideShow,
+      fetchedSlideShow: state.slideShowReducer.fetchedSlideShow,
+      slideShow: {...state.slideShowReducer.slideShow}
   }
 }
 

@@ -14,6 +14,7 @@ const defaultState = {
     topRatedReducer: [],
     movieSearchReducer: {},
     router: {}
+    
     // topRated: [],
     // fetchingTopRated: false,
     // fetchedTopRated: false,

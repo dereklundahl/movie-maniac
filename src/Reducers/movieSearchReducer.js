@@ -12,10 +12,9 @@ import {
   };
   
   
-  export default function popularReducer(state=initialState, action) {
+  export default function movieSearchReducer(state=initialState, action) {
       switch(action.type) {
           case FETCH_MOVIE_SEARCH_PENDING: {
-            console.log("STEP 4 from reducer change fetching to true !!!")
             return {
               ...state, 
               fetchingMovieSearch: true
@@ -23,7 +22,6 @@ import {
           }
   
           case FETCH_MOVIE_SEARCH_REJECTED: {
-            console.log("rejected!!!");
             return {
                 ...state,
                 fetchingMovieSearch: false,
@@ -32,7 +30,6 @@ import {
           }
   
           case FETCH_MOVIE_SEARCH_FULFILLED: {
-            console.log("step 6, movie search FULFILLED from the reducer STEP 5")
             return {
               ...state, 
               fetchingMovieSearch: false,

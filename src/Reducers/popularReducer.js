@@ -1,7 +1,7 @@
 import {
-  FETCH_DATA_PENDING,
-  FETCH_DATA_FULFILLED,
-  FETCH_DATA_REJECTED
+  FETCH_POPULAR_PENDING,
+  FETCH_POPULAR_FULFILLED,
+  FETCH_POPULAR_REJECTED
 } from '../Actions/actionCreators';
 
 const initialState = {
@@ -14,25 +14,22 @@ const initialState = {
 
 export default function popularReducer(state=initialState, action) {
     switch(action.type) {
-        case FETCH_DATA_PENDING: {
-          console.log("STEP 3, change fetching to TRUE !!!")
+        case FETCH_POPULAR_PENDING: {
           return {
             ...state, 
             fetchingPopular: true
           }
         }
 
-        case FETCH_DATA_REJECTED: {
-          console.log("rejected!!!");
+        case FETCH_POPULAR_REJECTED: {
           return {
               ...state,
               fetchingPopular: false,
-              error: action.payload  
+              errorPopular: action.payload  
           }
         }
 
-        case FETCH_DATA_FULFILLED: {
-          console.log("FETCH DATA FULFILLED from the reducer STEP 5")
+        case FETCH_POPULAR_FULFILLED: {
           return {
             ...state, 
             fetchingPopular: false,
