@@ -1,10 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+class NowPlayingGrid extends React.Component {
+    render() {
 
-const NowPlayingGrid = () => (
-    <div className="movie-grid">
-        <h1>Now Playing Grid!</h1>
-    </div>
-);
+        const { nowPlaying } = this.props;
 
-export default NowPlayingGrid;
+        return (
+          <div className="grid">
+            <h1>Now Playing</h1>
+            <figure>
+              {Object.keys(nowPlaying).map(key => 
+                <div key={key}>
+                  <img src={`https://image.tmdb.org/t/p/w500/${nowPlaying[key].poster_path}`}
+                       alt="movie-poster"
+                       className="grid-item"
+                       id={`grid-item-${key}`}
+                  />
+                </div>
+              )}
+            </figure>
+          </div>
+        )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        nowPlaying: {...state.nowPlayingReducer.nowPlaying}
+    }
+  }
+
+export default connect(mapStateToProps)(NowPlayingGrid);
+

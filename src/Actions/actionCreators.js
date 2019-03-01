@@ -1,6 +1,7 @@
 // Movie Search
 export const FETCH_MOVIE_SEARCH_PENDING = "FETCH_MOVIE_SEARCH_PENDING";
 export function fetchMovieSearchPending(movies) {
+  console.log("Fetch pending fired from action creators");
   return {
   type: FETCH_MOVIE_SEARCH_PENDING,
   
@@ -17,6 +18,7 @@ export function fetchMovieSearchRejected(error) {
 
 export const FETCH_MOVIE_SEARCH_FULFILLED = "FETCH_MOVIE_SEARCH_FULFILLED";
 export function fetchMovieSearchFulfilled(movieDatabase, json) {
+  console.log("movie search fulfilled fired from action creators");
   return {
     type: FETCH_MOVIE_SEARCH_FULFILLED,
     movieSearch: json,
@@ -25,6 +27,7 @@ export function fetchMovieSearchFulfilled(movieDatabase, json) {
 }
 
 export const searchMovies = formattedValue => dispatch => {
+  console.log(`search movies called from action creaters ${formattedValue}`);
   dispatch(fetchMovieSearchPending())
   return fetch(`https://api.themoviedb.org/3/search/movie?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&query=${formattedValue}`)
     .then(response => response.json())

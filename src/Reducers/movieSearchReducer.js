@@ -15,6 +15,7 @@ import {
   export default function movieSearchReducer(state=initialState, action) {
       switch(action.type) {
           case FETCH_MOVIE_SEARCH_PENDING: {
+            console.log("movie search pending fired from reducer");
             return {
               ...state, 
               fetchingMovieSearch: true
@@ -30,11 +31,12 @@ import {
           }
   
           case FETCH_MOVIE_SEARCH_FULFILLED: {
+            console.log("move search fulfilled fired from reducer");
             return {
               ...state, 
               fetchingMovieSearch: false,
               fetchedMovieSearch: true,
-              movieSearch: action.results
+              movieSearch: action.movieSearch.results
             }
           }
   

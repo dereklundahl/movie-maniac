@@ -1,5 +1,5 @@
 import { createBrowserHistory } from 'history';
-import { applyMiddleware, compose, createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -14,7 +14,7 @@ const defaultState = {
     topRatedReducer: [],
     movieSearchReducer: {},
     router: {}
-    
+
     // topRated: [],
     // fetchingTopRated: false,
     // fetchedTopRated: false,

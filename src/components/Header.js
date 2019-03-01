@@ -12,11 +12,11 @@ class Header extends React.Component {
   movieSearch = React.createRef();
 
   handleSubmit = (event) => {
+    console.log("handle submit clicked");
     event.preventDefault();
     let value = this.movieSearch.current.value;
     let formattedValue = value.replace(/\s/g, '+');
     this.props.dispatch(searchMovies(formattedValue));
-    
   }
 
   render() {
@@ -29,7 +29,7 @@ class Header extends React.Component {
             <Nav />
             <form className="search" onSubmit={this.handleSubmit}>
               <input type="text" name="name" placeholder="Search for Movies" ref={this.movieSearch}></input>
-              <Link to="/search"><button  className="button">Go</button></Link>
+              <button  className="button">Go</button>
             </form>
         </div>
       </StyledHeader>
@@ -39,3 +39,5 @@ class Header extends React.Component {
 }
 
 export default connect()(Header);
+
+//<Link to="/search">
