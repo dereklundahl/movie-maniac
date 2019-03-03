@@ -64,6 +64,26 @@ const NavStyles = styled.ul`
     justify-content: center;
     font-size: 1.5rem;
   }
+  .search {
+    max-height: 10%;
+    padding-top: 10px;
+    transform: skew(0deg);
+    top: 0;
+    bottom: 0;
+
+
+  }
+  .search-button {
+    transform: none;
+    background-color: white;
+    max-height: 100%;
+    transform: skew(0deg);
+    top: 0;
+    bottom: 0;
+
+
+  }
+
 `;
 
 export default NavStyles;

@@ -1,6 +1,6 @@
 import React from "react";
 
-class NowPlayingMovie extends React.Component {
+class Movie extends React.Component {
     render() {
         return (
           <div className="single-movie">
@@ -13,4 +13,4 @@ class NowPlayingMovie extends React.Component {
     }
 }
 
-export default NowPlayingMovie;
+export default Movie;

@@ -28,7 +28,9 @@ export const StyledHeader = styled.header`
       background: #282c34;
 
   }
-  .bar .search {
-    display: grid;
+  .search {
+    display: flex;
+    justify-content: flex-end;
+    
   }
 `;

@@ -1,25 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { GridStyles, StyledHeader } from './styles/GridStyles';
+
+
 class NowPlayingGrid extends React.Component {
-    render() {
+    
+  
+  render() {
 
         const { nowPlaying } = this.props;
 
         return (
-          <div className="grid">
-            <h1>Now Playing</h1>
-            <figure>
+          <div>
+            <StyledHeader>Now Playing</StyledHeader>
+            <GridStyles>
               {Object.keys(nowPlaying).map(key => 
                 <div key={key}>
-                  <img src={`https://image.tmdb.org/t/p/w500/${nowPlaying[key].poster_path}`}
+                  <figure>
+                    <img 
+                       src={`https://image.tmdb.org/t/p/w500/${nowPlaying[key].poster_path}`}
                        alt="movie-poster"
-                       className="grid-item"
-                       id={`grid-item-${key}`}
-                  />
+                       className="flex-item"
+                       id={`flex-item-${key}`}
+                    />
+                  </figure>
                 </div>
               )}
-            </figure>
+            </GridStyles>
           </div>
         )
     }

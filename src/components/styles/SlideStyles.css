@@ -6,13 +6,17 @@
 }
 
 .slider {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
     overflow: hidden;
     height: 600px;
+    background-color: lightgray;
+
 }
 
 .slider figure div {
     width: 20%;
-    float: left;
 }
 
 .slider figure .slide {

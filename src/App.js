@@ -39,7 +39,7 @@ class App extends Component {
                   <Route path="/popular" component={PopularGrid}/>
                   <Route path="/top-rated" component={TopRatedGrid}/>
                   <Route path="/now-playing" component={NowPlayingGrid}/>
-                  <Route path="/search" component={MovieSearchList}/>
+                  <Route path="/search/:movieName" component={MovieSearchList}/>
               </Switch> 
             }
         </AppStyles>
