@@ -34,7 +34,7 @@ class NowPlayingDetails extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        popular: {...state.nowPlayingReducer.nowPlaying}
+        nowPlaying: {...state.nowPlayingReducer.nowPlaying}
     }
   }
   

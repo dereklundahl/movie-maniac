@@ -7,11 +7,12 @@ class TopRatedDetails extends React.Component {
     render() {
         
         const { topRated, match } = this.props;
+        
         let movieArray = Object.keys(topRated)
           .map(key => topRated[key]);
 
         const movie = movieArray.filter(function(topRated) {
-            return topRated.id === match.params.id;
+            return topRated.id == match.params.id;
         })
 
         console.log(`the url is: ${match.params.id}
