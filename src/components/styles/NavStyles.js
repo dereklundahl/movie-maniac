@@ -65,7 +65,7 @@ const NavStyles = styled.ul`
     font-size: 1.5rem;
   }
   .search {
-    max-height: 10%;
+    flex: none;
     padding-top: 10px;
     transform: skew(0deg);
     top: 0;

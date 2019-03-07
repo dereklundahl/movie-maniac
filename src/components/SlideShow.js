@@ -9,17 +9,17 @@ class SlideShow extends React.Component {
   
     return (
         <div className="slider">
-          <figure>
             {Object.keys(slideShow).map(key => 
               <div key={key}>
+                <figure>
                 <img src={`https://image.tmdb.org/t/p/w500/${slideShow[key].poster_path}`}
                      alt="movie-poster"
                      className="slide"
                      id={`slide-${key}`}
                 />
+                </figure>
               </div>
             )}
-          </figure>
         </div>
     );
   }

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import PopularPoster from './PopularPoster';
+
 import { GridStyles, StyledHeader } from './styles/GridStyles';
 
 class PopularGrid extends React.Component {
@@ -12,17 +14,15 @@ class PopularGrid extends React.Component {
           <div>
             <StyledHeader>Popular</StyledHeader>
             <GridStyles>
-              {Object.keys(popular).map(key => 
-                <div key={key}>
-                  <figure>
-                    <img src={`https://image.tmdb.org/t/p/w500/${popular[key].poster_path}`}
-                       alt="movie-poster"
-                       className="flex-item"
-                       id={`flex-item-${key}`}
+              {Object.keys(popular).map(key => ( 
+                  <div>
+                    <PopularPoster
+                      key={key}
+                      i={key}
+                      details={popular[key]} 
                     />
-                  </figure>
-                </div>
-              )}
+                  </div>
+                ))}
             </GridStyles>
           </div>
         )
@@ -30,12 +30,10 @@ class PopularGrid extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        popular: {...state.popularReducer.popular}
-    }
+  return {
+      popular: {...state.popularReducer.popular}
   }
+}
 
 export default connect(mapStateToProps)(PopularGrid);
-
-
 

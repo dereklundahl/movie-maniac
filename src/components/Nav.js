@@ -12,20 +12,18 @@ class Nav extends React.Component {
   
     movieSearch = React.createRef();
 
-    // handleChange = (event) => {
-    //   event.preventDefault();
-    //   const movieSearch = {...this.state.movieSearch}
-    //   console.log(event);
-    //   this.setState({ movieSearch });
-    // }
+    handleChange = (event) => {
+      let value = this.movieSearch.current.value;
+      let formattedValue = value.replace(/\s/g, '+');
+      console.log(`this is the formated value: ${formattedValue}`);
+      this.setState({ movieSearch: formattedValue });
+    }
 
     handleSubmit = (event) => {
       console.log("handle submit clicked");
       event.preventDefault();
-      let value = this.movieSearch.current.value;
-      let formattedValue = value.replace(/\s/g, '+');
-      this.props.dispatch(searchMovies(formattedValue));
-      //this.props.history.push(`/search/${formattedValue}`);
+      this.props.dispatch(searchMovies(this.state.movieSearch));
+      this.props.history.push(`/search/${this.state.movieSearch}`);
     }
 
     render() {
@@ -41,7 +39,7 @@ class Nav extends React.Component {
                   name="name" 
                   placeholder="Search for Movies" 
                   ref={this.movieSearch}
-                  handleChange={this.handleChange}>
+                  onChange={this.handleChange}>
                 </input>
                 <button  className="search-button">Go</button>
               </form>

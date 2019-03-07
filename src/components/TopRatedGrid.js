@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { GridStyles, StyledHeader } from './styles/GridStyles';
 
+import TopRatedPoster from './TopRatedPoster';
+
 class TopRatedGrid extends React.Component {
     render() {
 
@@ -12,17 +14,14 @@ class TopRatedGrid extends React.Component {
           <div>
             <StyledHeader>Top Rated</StyledHeader>
             <GridStyles>
-              {Object.keys(topRated).map(key => 
-                <div key={key}>
-                  <figure>
-                    <img src={`https://image.tmdb.org/t/p/w500/${topRated[key].poster_path}`}
-                       alt="movie-poster"
-                       className="flex-item"
-                       id={`flex-item-${key}`}
-                    />
-                  </figure>
-                </div>
-              )}
+              {Object.keys(topRated).map(key => ( 
+                  <TopRatedPoster
+                    key={key}
+                    i={key}
+                    details={topRated[key]}
+                    history={this.props.history} 
+                  />
+              ))}
             </GridStyles>
           </div>
         )

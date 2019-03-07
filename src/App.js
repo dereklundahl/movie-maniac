@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 
 import Header from './components/Header';
 import SlideShow from './components/SlideShow';
-import PopularGrid from './components/PopularGrid';
-import TopRatedGrid from './components/TopRatedGrid';
-import NowPlayingGrid from './components/NowPlayingGrid';
+import Popular from './components/Popular';
+import TopRated from './components/TopRated';
+import NowPlaying from './components/NowPlaying';
 import MovieSearchList from './components/MovieSearchList';
-
 
 import { 
   fetchSlideShowMovies, 
@@ -30,16 +29,16 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <AppStyles>    
-            <Header />
+        <AppStyles>
+            <Header {...this.props} />
             {this.props.fetchingSlideShow ? 
               <h1>Loading...</h1> :
               <Switch>
                   <Route exact path="/" component={SlideShow}/>
-                  <Route path="/popular" component={PopularGrid}/>
-                  <Route path="/top-rated" component={TopRatedGrid}/>
-                  <Route path="/now-playing" component={NowPlayingGrid}/>
-                  <Route path="/search/:movieName" component={MovieSearchList}/>
+                  <Route path="/popular" component={Popular}/>
+                  <Route path="/top-rated" component={TopRated}/>
+                  <Route path="/now-playing" component={NowPlaying}/>
+                  <Route path="/search/:movieName" component={MovieSearchList} />
               </Switch> 
             }
         </AppStyles>
@@ -53,7 +52,6 @@ const mapStateToProps = (state) => {
   return {
       fetchingSlideShow: state.slideShowReducer.fetchingSlideShow,
       fetchedSlideShow: state.slideShowReducer.fetchedSlideShow,
-      slideShow: {...state.slideShowReducer.slideShow}
   }
 }
 
@@ -61,9 +59,3 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps)(App);
 
 
-  //   fetch('https://api.themoviedb.org/3/movie/popular?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=1', {
-  
-  //     fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=1`, {
-  
-  //     fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=3da005d30d2e2f9a87b62f6b0bbe7072&language=en-US&page=1`, {
-  

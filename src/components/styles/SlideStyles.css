@@ -7,12 +7,13 @@
 
 .slider {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
-    overflow: hidden;
-    height: 600px;
+    height: 350px;
+    width: 75%;
+    overflow: hideden;
     background-color: lightgray;
-
+    padding-top: 50px;
+    justify-content: center;
+    border: 10px solid black;
 }
 
 .slider figure div {
@@ -20,9 +21,7 @@
 }
 
 .slider figure .slide {
-    width: 100%;
-    float: left;
-
+    flex-shrink: 0;
 }
 
 .slider figure {
@@ -31,7 +30,9 @@
     height: 100%;
     margin: 0;
     left: 0;
-    animation: 10s slidy infinite;
+    animation: 20s slidy infinite;
+    flex-shrink: 0;
+
 }
 
 @keyframes slidy {

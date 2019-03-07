@@ -7,7 +7,7 @@ class MovieSearchList extends React.Component {
         const { movieSearch } = this.props;
 
         return (
-            <div className="slider">
+            <div className="movie-search">
             <figure>
               {Object.keys(movieSearch).map(key => 
                 <div key={key}>
@@ -16,6 +16,7 @@ class MovieSearchList extends React.Component {
                        className="movie"
                        id={`movie-${key}`}
                   />
+                  <p>{movieSearch[key].overview}</p>
                 </div>
               )}
             </figure>

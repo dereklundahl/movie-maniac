@@ -3,10 +3,9 @@ import styled from 'styled-components';
 export const GridStyles = styled.div`
    display: flex;
    width: 100%;
-   justify-content: space-evenly;
-   align-content: flex-end;
    flex-wrap: wrap;
    background-color: lightgray;
+   justify-content: flex-start;
   
    .flex-item {
        width: 200px;

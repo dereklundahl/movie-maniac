@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 
 import { GridStyles, StyledHeader } from './styles/GridStyles';
 
+import NowPlayingPoster from './NowPlayingPoster';
 
 class NowPlayingGrid extends React.Component {
-    
+   
   
   render() {
 
@@ -15,18 +16,14 @@ class NowPlayingGrid extends React.Component {
           <div>
             <StyledHeader>Now Playing</StyledHeader>
             <GridStyles>
-              {Object.keys(nowPlaying).map(key => 
-                <div key={key}>
-                  <figure>
-                    <img 
-                       src={`https://image.tmdb.org/t/p/w500/${nowPlaying[key].poster_path}`}
-                       alt="movie-poster"
-                       className="flex-item"
-                       id={`flex-item-${key}`}
-                    />
-                  </figure>
-                </div>
-              )}
+              {Object.keys(nowPlaying).map(key => ( 
+                  <NowPlayingPoster
+                    key={key}
+                    i={key}
+                    details={nowPlaying[key]}
+                    history={this.props.history} 
+                  />
+              ))}
             </GridStyles>
           </div>
         )

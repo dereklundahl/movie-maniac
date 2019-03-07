@@ -1,21 +1,28 @@
-import React from "react";
-import TopRatedMovie from './TopRatedMovie';
-import '../assets/css/TopRated.css';
+import React from 'react';
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import TopRatedGrid from './TopRatedGrid';
+import TopRatedDetails from './TopRatedDetails';
 
 class TopRated extends React.Component {
     render() {
         return (
-            <div className="panel">
-              <h1 className="component-header">Top Rated</h1>
-              {Object.keys(this.props.topRated).map(key => 
-                <TopRatedMovie
-                  key={key}
-                  movieDetails={this.props.topRated[key]}
-                 />
-              )}
-            </div>
-        );
+            <div>
+              <div>
+                <Route exact path='/top-rated' component={TopRatedGrid}/>
+                <Route path='/top-rated/:id' component={TopRatedDetails}/>
+              </div>
+          </div>
+        )
     }
-}
+} 
 
-export default TopRated;
+
+const mapStateToProps = (state) => {
+    return {
+        topRated: {...state.topRatedReducer.topRated}
+    }
+  }
+
+export default connect(mapStateToProps)(TopRated);
