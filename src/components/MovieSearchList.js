@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import SearchStyles from './styles/SearchStyles';
+
+
 class MovieSearchList extends React.Component {
     render() {
        
         const { movieSearch } = this.props;
 
         return (
-            <div className="movie-search">
+          <SearchStyles>
             <figure>
               {Object.keys(movieSearch).map(key => 
                 <div key={key}>
@@ -16,11 +19,11 @@ class MovieSearchList extends React.Component {
                        className="movie"
                        id={`movie-${key}`}
                   />
-                  <p>{movieSearch[key].overview}</p>
+                  <p className="overview">{movieSearch[key].overview}</p>
                 </div>
               )}
             </figure>
-          </div>
+          </SearchStyles>
         )
     }
 }
